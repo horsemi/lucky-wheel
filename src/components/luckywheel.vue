@@ -26,14 +26,14 @@
         <div class="main-bg"></div>
         <div class="bg-p"></div>
         <div class="content">
-          <div class="count">今日免费抽奖次数： {{ count}}</div>
+          <div class="count">抽奖次数： {{ count}}</div>
         </div>
         <div class="tip">
           <div class="tip-title">活动规则</div>
           <div class="tip-content">
-            <p>1.每日签到后，即可获得一次幸运大转盘的机会，仅限当天有效，过期作废。 2.金币抽奖，每10个金豆可兑换一次大转盘机会。</p>
-            <p>2.金币抽奖，每10个金豆可以兑换一次大转盘抽奖机会</p>
-            <p>3.所中金豆或积分到【我的账户】中查询。累计达到100金豆及以上，可以兑换相应奖品</p>
+            <p>前言: 欢迎来到幸运大抽奖，我们的抽奖平台是公平，公正，公开，祝幸运的您能抽到心仪的大奖</p>
+            <p>1.初次抽奖系统会免费兑换一次大转盘抽奖机会，当抽奖次数使用完后，需要向帅气的管理员索取神秘代码才能继续抽奖哦</p>
+            <p>2.抽到奖品后，需要使用对应的兑换码与管理员兑换礼物，礼物只能兑换一次，每次只能兑换一个礼物，要好好珍惜哦~</p>
           </div>
         </div>
       </div>
@@ -51,9 +51,9 @@
       <!-- 充值弹窗 -->
       <div class="toast" v-show="recharge">
         <div class="toast-container">
-          <img :src="toastIcon" class="toast-picture" />
+          <img :src="rechargeIcon" class="recharge-picture" />
           <div class="close" @click="closeToast()"></div>
-          <div class="toast-title">充值</div>
+          <div class="toast-title">你的抽奖次数已经用完了T_T</div>
           <div class="toast-btn">
             <div class="toast-cancel" @click="closeToast">关闭</div>
           </div>
@@ -70,23 +70,26 @@ const CIRCLE_ANGLE = 360;
 
 const config = {
   // 总旋转时间
-  duration: 4000,
+  duration: 10000,
   // 旋转圈数
-  circle: 8,
+  circle: 12,
   mode: "ease-in-out"
 };
 
 export default {
   data() {
     return {
-      count: 1, // 剩余抽奖次数
+      count: 5, // 剩余抽奖次数
       duration: 3000, // 转盘旋转时间
+      prizeSum: 0,  // 累计抽奖次数
+      happyEveryDay: [0,0,1,1,3,4],
       prizeList: [], // 奖品列表
       rotateAngle: 0, // 旋转角度
       index: 0,
       recharge: false,  // 是否弹出充值窗口
       blackBackground: false, // 黑色背景是否显示
-      prize: null
+      prize: null,
+      rechargeIcon: require("../assets/img/recharge_title.png")
     };
   },
   created() {
@@ -167,7 +170,9 @@ export default {
       // 可以返回下标，也可以返回奖品 id，通过查询 奖品列表，最终得到下标
 
       // 随机获取下标
-      this.index = this.random(this.prizeList.length - 1);
+      // this.index = this.random(this.prizeList.length - 1);
+      this.prizeSum += 1;
+      this.index = this.happyEveryDay[this.prizeSum - 1];
 
       // 减少剩余抽奖次数
       this.count--;
@@ -331,7 +336,7 @@ export default {
 .tip {
   position: relative;
   margin: 2.5rem auto 0;
-  width: 17.5rem;
+  width: 33.5rem;
   border: 1px solid #fbc27f;
 }
 .tip-title {
@@ -386,6 +391,13 @@ export default {
   left: -1.5rem;
   width: 18.75rem;
   height: 8.5625rem;
+}
+.recharge-picture {
+    position: absolute;
+    top: -2.5rem;
+    left: -3.1rem;
+    width: 20.75rem;
+    /* height: 8.5625rem; */
 }
 .toast-pictrue-change {
   position: absolute;
