@@ -1,31 +1,31 @@
 export const prizeList = [
   {
-    icon: require("../assets/img/bean_500.png"), // 奖品图片
+    icon: require("../assets/img/phone.png"), // 奖品图片
     name: "华为手机", // 奖品名称
     isPrize: 1 // 该奖项是否为奖品
   },
   {
-    icon: require("../assets/img/bean_five.png"),
+    icon: require("../assets/img/preson.png"),
     name: "某人",
     isPrize: 1
   },
   {
-    icon: require("../assets/img/bean_one.png"),
+    icon: require("../assets/img/better_watch.png"),
     name: "天梭",
     isPrize: 1
   },
   {
-    icon: require("../assets/img/point_five.png"),
+    icon: require("../assets/img/low_watch.png"),
     name: "卡罗莱",
     isPrize: 1
   },
   {
-    icon: require("../assets/img/point_ten.png"),
+    icon: require("../assets/img/hw_watch.png"),
     name: "华为watch",
     isPrize: 1
   },
   {
-    icon: require("../assets/img/bean_500.png"),
+    icon: require("../assets/img/dish.png"),
     name: "洗碗券*n",
     isPrize: 1
   },
