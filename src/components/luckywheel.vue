@@ -61,8 +61,9 @@
           <div class="toast-title">
             输入你的神秘代码吧
             <input
-              type="number"
-              maxlength="11"
+              type="text"
+              autocomplete="off"
+              onpaste="return false" oncontextmenu="return false" oncopy="return false" oncut="return false"
               style="margin-top: 8px;background: #f9f9f9; outline: none; border: none;"
               v-model="rechargeCode"
             />
@@ -95,7 +96,7 @@ export default {
   data() {
     return {
       rechargeCode: "",
-      count: 12, // 剩余抽奖次数
+      count: 8, // 剩余抽奖次数
       duration: 3000, // 转盘旋转时间
       prizeSum: 0, // 累计抽奖次数
       happyEveryDay: [7, 7, 7, 7, 7, 6, 7, 7, 3, 7, 7, 4, 7, 2, 7, 7, 0],
