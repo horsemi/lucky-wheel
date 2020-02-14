@@ -32,13 +32,12 @@
           <div class="tip-title">活动规则</div>
           <div class="tip-content">
             <p>前言: 欢迎来到幸运大抽奖，我们的抽奖平台是公平，公正，公开，祝幸运的您能抽到心仪的大奖</p>
-            <p>1.初次抽奖系统会免费兑换一次大转盘抽奖机会，当抽奖次数使用完后，需要向帅气的管理员索取神秘代码才能继续抽奖哦</p>
+            <p>1.初次抽奖系统会免费兑换十次大转盘抽奖机会，当抽奖次数使用完后，需要向帅气的管理员索取神秘代码才能继续抽奖哦</p>
             <p>2.抽到奖品后，需要使用对应的截图与管理员兑换礼物，礼物只能兑换一次，每次只能兑换一个礼物，要好好珍惜哦~</p>
           </div>
                   <div>
           <audio  loop="loop" autoplay="autoplay">
-            <source :src="music1" type="audio/mpeg" />
-            <source :src="music2" type="audio/mpeg" />
+            <source :src="musicbgm" type="audio/mpeg" />
           </audio>
         </div>
         </div>
@@ -96,10 +95,10 @@ export default {
   data() {
     return {
       rechargeCode: "",
-      count: 0, // 剩余抽奖次数
+      count: 12, // 剩余抽奖次数
       duration: 3000, // 转盘旋转时间
       prizeSum: 0, // 累计抽奖次数
-      happyEveryDay: [0, 0, 1, 1, 3, 4],
+      happyEveryDay: [7, 7, 7, 7, 7, 6, 7, 7, 3, 7, 7, 4, 7, 2, 7, 7, 0],
       prizeList: [], // 奖品列表
       rotateAngle: 0, // 旋转角度
       index: 0,
@@ -107,8 +106,26 @@ export default {
       blackBackground: false, // 黑色背景是否显示
       prize: null,
       rechargeIcon: require("../assets/img/recharge_title.png"),
-      music1: require("../assets/audio/Auf Und Auf Voll Lebenslust.mp3"), // 背景音乐
-      music2: require("../assets/audio/Nyan Cat.mp3"), // 背景音乐
+      musicbgm: require("../assets/audio/Auf Und Auf Voll Lebenslust.mp3"), // 背景音乐
+      music: [
+        new Audio(require("../assets/audio/boer/1.wav")), 
+        new Audio(require("../assets/audio/boer/2.wav")), 
+        new Audio(require("../assets/audio/boer/3.wav")), 
+        new Audio(require("../assets/audio/boer/4.wav")), 
+        new Audio(require("../assets/audio/boer/5.wav")),
+        new Audio(require("../assets/audio/boer/6.wav")),
+        new Audio(require("../assets/audio/boer/7.wav")),
+        new Audio(require("../assets/audio/boer/8.wav")),
+        new Audio(require("../assets/audio/boer/9.wav")),
+        new Audio(require("../assets/audio/boer/10.wav")),
+        new Audio(require("../assets/audio/boer/11.wav")),
+        new Audio(require("../assets/audio/boer/12.wav")),
+        new Audio(require("../assets/audio/boer/13.wav")),
+        new Audio(require("../assets/audio/boer/14.wav")),
+        new Audio(require("../assets/audio/boer/15.wav")),
+        new Audio(require("../assets/audio/boer/16.wav")),
+        new Audio(require("../assets/audio/boer/17.wav")),
+      ]
     };
   },
   created() {
@@ -251,6 +268,7 @@ export default {
       this.isRotating = false;
 
       this.prize = prizeList[this.index];
+      this.music[this.prizeSum - 1].play();
       this.blackBackground = true;
     },
     //关闭弹窗
